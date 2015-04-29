@@ -2,6 +2,20 @@
 
 ### Requirements ###
 
+pre-tickets
+
+ * post
+ * list
+
+
+tickets
+
+ * build from pre-tickets 
+ 
+
+
+### discarded / delayed as of now
+
 #### user ####
  - create ticket
  - track ticket
