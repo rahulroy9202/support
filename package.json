@@ -1,0 +1,11 @@
+{
+  "name": "support",
+  "version": "0.0.1",
+  "description": "letzchange support portal api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rahulroy9202@gmail.com",
+  "license": "private"
+}
