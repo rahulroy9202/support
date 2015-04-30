@@ -2,9 +2,9 @@
 
 ### Requirements ###
 
-pre-tickets
+pre-tickets ie- inbound requests
 
- * post
+ * create
  * list
 
 
@@ -12,7 +12,6 @@ tickets
 
  * build from pre-tickets 
  
-
 
 ### discarded / delayed as of now
 

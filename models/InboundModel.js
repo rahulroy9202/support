@@ -1,8 +1,6 @@
-/**
- * User
- *
- * @module      :: Model
- * @description :: This is the base user model
+/*
+ * InboundModel
+ * @description :: Server-side logic for defining inbound model
  */
 
 module.exports = {
