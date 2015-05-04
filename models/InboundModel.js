@@ -3,43 +3,29 @@
  * @description :: Server-side logic for defining inbound model
  */
 
-module.exports = {
+var mongoose = require('mongoose');
 
-  attributes: {
-    email: {
-      type: 'email',
-      unique: true
-    },
-    name: 'string',
-    password: {
-      type: 'STRING',
-      minLength: 8
-    },
-    is_superadmin: {
-      type: 'boolean',
-      defaultsTo: 'false'
-    },
-    nonprofit_id: {model: 'nonprofit'}
-  },
+var inboundSchema = mongoose.Schema({
 
-  beforeCreate: function (values, next) {
-    if (typeof values.password !== 'undefined') {
-      var bcrypt = require('bcrypt');
-      var salt = bcrypt.genSaltSync(10);
-      var hash = bcrypt.hashSync(values.password, salt);
-      values.password = hash;
-    }
-    next();
-  },
+	type: {
+		type: String,
+		required: true
+	},
+	
+	data: {
+		type: mongoose.Schema.Types.Mixed,
+	},
+	
+	created: {
+		type: Date,
+		required: true
+	},
+    
+    updated: {
+		type: Date,
+		required: true
+	}
+    
+});
 
-  beforeUpdate: function (values, next) {
-    if (typeof values.password !== 'undefined') {
-      var bcrypt = require('bcrypt');
-      var salt = bcrypt.genSaltSync(10);
-      var hash = bcrypt.hashSync(values.password, salt);
-      values.password = hash;
-    }
-    next();
-  }
-
-};
+module.exports = mongoose.model('inbound', inboundSchema);

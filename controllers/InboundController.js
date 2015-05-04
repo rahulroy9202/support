@@ -4,16 +4,39 @@
  */
 
 var inboundModel = require('../models/InboundModel');
+var rpp = 100;
 
 module.exports = {
 	
 	list: function(req, res, next) {
-		res.send('list');
-		next();
+        try {
+            _page = req.params.page || req.body.page || 0;
+            inboundModel.find({}).sort({updated: -1}).limit(rpp).skip(_page * rpp).exec(function(err, doc) {
+                if(err) return res.json({success: false, error: err});
+                return res.json({success: true, data: doc});               
+            });
+        }
+        catch(e) {
+            console.log('error: ', e);
+            return res.json({success: false, error: e});
+        }
 	},
 	
 	create: function(req, res, next) {
-		res.send('new');
-		next();
+        try {
+            var _inbound  = new inboundModel();
+            _inbound.data = req.body.data;
+            _inbound.type = req.body.type;
+            _inbound.created = _inbound.updated = new Date();
+
+            _inbound.save(function (err,doc) {
+                if(err) return res.json({success: false, error: err});
+                return res.json({success: true, data: doc});
+            });
+        }
+        catch(e) {
+            console.log('error: ', e);
+            return res.json({success: false, error: e});
+        }
 	}
 };
