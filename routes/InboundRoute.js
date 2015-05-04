@@ -10,10 +10,11 @@ var inboundController = require('../controllers/InboundController');
 
 //list all inbounds sorted by time.
 router.get('/list/', inboundController.list);
+router.get('/list/:page/', inboundController.list);
 
 //create new inbound
 router.post('/create/', inboundController.create);
-
+router.get('/create/', inboundController.create);
 
 
 

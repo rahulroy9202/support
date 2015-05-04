@@ -28,4 +28,11 @@ var inboundSchema = mongoose.Schema({
     
 });
 
+/*
+inboundSchema.methods.processRequest = function(req) {
+    this.user_agent = headers['user-agent'];
+	this.referer = headers.referer;
+};
+//_inbound.processRequest(req);
+*/
 module.exports = mongoose.model('inbound', inboundSchema);
