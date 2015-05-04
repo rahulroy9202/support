@@ -28,14 +28,14 @@ module.exports = {
 	create: function(req, res, next) {
         try {
             
-            var url_parts = url.parse(req.url, true);
-            
-            var _data = req.body;
-            _data = _.extend(_data, url_parts.query);
+            var _payload = {};
+            _payload.body = req.body;
+            _payload.url = req.url;
+            _payload.query = url.parse(req.url, true).query;   //_.extend(_payload, url_parts.query);
+            _payload.params = req.params;
             
             var _inbound  = new inboundModel();
-            
-            _inbound.data = _data;
+            _inbound.data = _payload;
             _inbound.type = req.body.type || "unknown";
             _inbound.created = _inbound.updated = new Date();
             
