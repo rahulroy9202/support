@@ -41,13 +41,11 @@ module.exports = {
             _inbound.type = req.params.type || req.body.type || req.query.type || "unknown";
             _inbound.created = _inbound.updated = new Date();
             
-/*            _inbound.save(function (err, doc) {
+            _inbound.save(function (err, doc) {
                 if(err) return res.json({success: false, error: err});
                 return res.json({success: true, data: doc});
             });
-*/
-            return res.json({success: true, data: doc});
-            
+    
         }
         catch(e) {
             console.log('error: ', e);
