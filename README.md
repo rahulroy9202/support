@@ -14,6 +14,7 @@ tickets
  
  
 TODO:   
+slugify. kue
 create connection polling to ticket api.  
 create logic to automatically read inbound data, and call ticket api.
 if 200, delete.
