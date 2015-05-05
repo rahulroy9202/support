@@ -4,6 +4,7 @@
  */
 
 var inboundModel = require('../models/InboundModel');
+var slugify = require('../services/Slugify');
 var url = require('url');
 var _ = require('lodash');
 
@@ -29,20 +30,23 @@ module.exports = {
         try {
             
             var _payload = {};
-            _payload.body = req.body;
+            
             _payload.url = req.url;
-            _payload.query = url.parse(req.url, true).query;   //_.extend(_payload, url_parts.query);
-            _payload.params = req.params;
+            _payload = _.extend(_payload, req.body);
+            _payload = _.extend(_payload, url.parse(req.url, true).query);
+            _payload = _.extend(_payload, req.params);
             
             var _inbound  = new inboundModel();
-            _inbound.data = _payload;
-            _inbound.type = req.body.type || "unknown";
+            _inbound.data = slugify(_payload);
+            _inbound.type = req.params.type || req.body.type || req.query.type || "unknown";
             _inbound.created = _inbound.updated = new Date();
             
-            _inbound.save(function (err,doc) {
+/*            _inbound.save(function (err, doc) {
                 if(err) return res.json({success: false, error: err});
                 return res.json({success: true, data: doc});
             });
+*/
+            return res.json({success: true, data: doc});
             
         }
         catch(e) {

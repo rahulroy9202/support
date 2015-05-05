@@ -13,9 +13,8 @@ router.get('/list/', inboundController.list);
 router.get('/list/:page/', inboundController.list);
 
 //create new inbound
-router.post('/create/', inboundController.create);
-router.get('/create/', inboundController.create);
-
+//router.post('/create/', inboundController.create);
+router.all('/create/', inboundController.create);
 
 
 module.exports = router;
